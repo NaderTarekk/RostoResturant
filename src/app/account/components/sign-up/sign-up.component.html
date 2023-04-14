@@ -1,0 +1,53 @@
+<div class="main">
+    <p class="sign" align="center">Sign Up</p>
+    <form class="form1" [formGroup]="Form" (ngSubmit)="SendUser()">
+        <div class="text-center">
+            <span class="text-danger" *ngIf="Username?.dirty && Username?.invalid &&Username?.touched">
+                <span class="" *ngIf="Username?.errors?.['required']">Username Required</span>
+                <span *ngIf="Username?.errors?.['noSpace']">no space between letters</span>
+            </span>
+        </div>
+        <input class="un " type="text" align="center" formControlName="Username" placeholder="Username">
+
+        <div class="text-center">
+            <span class="text-danger" *ngIf="Email?.dirty && Email?.invalid &&Email?.touched">
+                <span class="" *ngIf="Email?.errors?.['required']">Email Required</span>
+                <span *ngIf="Email?.errors?.['email']">Wrong Email</span>
+            </span>
+        </div>
+
+        <p class="text-danger text-center" *ngIf="ExistEmail">email already exist</p>
+        <input class="un " type="email" align="center" formControlName="Email" placeholder="Email">
+
+        <div class="text-center">
+            <span class="text-danger" *ngIf="Password?.dirty && Password?.invalid &&Password?.touched">
+                <span *ngIf="Password?.errors?.['required']">Password Required</span>
+                <span *ngIf="Password?.errors?.['minlength']">Password must be atleast 8 letters</span>
+            </span>
+        </div>
+        <input class="pass" type="password" align="center" formControlName="Password" placeholder="Password">
+        <input class="pass" type="password" align="center" formControlName="ConfirmPassword"
+            placeholder="Confirm Password">
+        <p class="text-danger text-center" *ngIf="Password?.value != ConfirmPassword?.value">Password Not Match</p>
+
+        <div class="position text-center px-5">
+            <select class="mb-5 form-select p-2 text-center" formControlName="Position">
+                <option value="NonePosition" [selected]="true">Select Your Position</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Nurse">Nurse</option>
+                <option value="Patient">Patient</option>
+            </select>
+        </div>
+
+
+        <button [disabled]="Form.invalid || Password?.value != ConfirmPassword?.value" class="submit"
+            align="center">Create</button>
+
+        <div class="text-center my-3 mx-5 go-home" *ngIf="GoHome">
+            <p class="alert alert-success">Account Created Successfully ✔ </p>
+        </div>
+
+        <p class="forgot mt-3" align="center"><a style="text-decoration: underline;" routerLink="/signIn">Back
+                to Sign In</a></p>
+    </form>
+</div>
