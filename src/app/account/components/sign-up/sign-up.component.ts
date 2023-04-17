@@ -13,6 +13,8 @@ export class SignUpComponent {
   PasswordNotMatch: boolean = false
   ExistEmail: boolean = false
   GoHome: boolean = false
+  GenderType!: string;
+  gender: string[] = ['Male', 'Female'];
 
   constructor(private service: AccountServiceService, private fb: FormBuilder, private router: Router) {
     this.Form = fb.group({
